@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+# Creates a new GCP Service Account with roles/cloudsql.admin and uses its credentials to configure a ProviderConfig
+# named 'default' for the GCP Provider.
+# Assumes you have the gcloud and kubectl CLIs installed and that you are logged in / targetting the desired cluster.
+
+set -euo pipefail
+
+PROJECT_ID=${PROJECT_ID:-"<SET ME>"}
+SA_NAME=${SA_NAME:-"crossplane-cloudsql"}
+
+gcloud iam service-accounts create "${SA_NAME}" --project "${PROJECT_ID}"
+gcloud projects add-iam-policy-binding "${PROJECT_ID}" \
+  --role="roles/cloudsql.admin" \
+  --member "serviceAccount:${SA_NAME}@${PROJECT_ID}.iam.gserviceaccount.com"
+gcloud iam service-accounts keys create creds.json --project "${PROJECT_ID}" --iam-account "${SA_NAME}@${PROJECT_ID}.iam.gserviceaccount.com"
+
+kubectl create secret generic gcp-creds -n crossplane-system --from-file=creds=./creds.json
+rm -f creds.json
+
+kubectl apply -f -<<EOF
+apiVersion: gcp.upbound.io/v1beta1
+kind: ProviderConfig
+metadata:
+  name: default
+spec:
+  projectID: ${PROJECT_ID}
+  credentials:
+    source: Secret
+    secretRef:
+      namespace: crossplane-system
+      name: gcp-creds
+      key: creds
+EOF
