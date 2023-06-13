@@ -51,6 +51,6 @@ spec:
           type: Format
         type: string
       type: FromCompositeFieldPath
-    - fromFieldPath: spec.parameters.storageGB
+    - fromFieldPath: spec.storageGB
       toFieldPath: spec.forProvider.settings.dataDiskSizeGb
       type: FromCompositeFieldPath
