@@ -26,8 +26,7 @@ spec:
             properties:
               storageGB:
                 default: 1
-                description: The desired storage capacity for the Kafka data volume,
-                  in Gigabytes.
+                description: The desired storage capacity for the instance.
                 type: integer
             type: object
         type: object
