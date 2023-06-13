@@ -1,15 +1,16 @@
-#apiVersion: bindable.database.example.org/v1alpha1
-#kind: PostgreSQLInstance
-#metadata:
-#  name: cloudsql-psql-1
-#spec:
-#  parameters:
-#    storageGB: 20
-#  compositionSelector:
-#    matchLabels:
-#      provider: gcp
-#  publishConnectionDetailsTo:
-#    name: cloudsql-psql-1
-#    metadata:
-#      labels:
-#        services.apps.tanzu.vmware.com/class: cloudsql-postgres
+---
+apiVersion: bindable.database.example.org/v1alpha1
+kind: PostgreSQLInstance
+metadata:
+  name: cloudsql-psql-1
+spec:
+  parameters:
+    storageGB: 20
+  compositionSelector:
+    matchLabels:
+      provider: gcp
+  publishConnectionDetailsTo:
+    name: cloudsql-psql-1
+    metadata:
+      labels:
+        services.apps.tanzu.vmware.com/class: cloudsql-postgres
