@@ -1,0 +1,10 @@
+---
+apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+kind: ClassClaim
+metadata:
+  name: cloudsql-psql-1
+spec:
+  classRef:
+    name: cloudsql-postgresql-on-demand
+  parameters:
+    storageGB: 20
