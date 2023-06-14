@@ -19,7 +19,7 @@ kubectl create secret generic gcp-creds -n crossplane-system --from-file=creds=.
 rm -f creds.json
 
 kubectl apply -f -<<EOF
-apiVersion: gcp.upbound.io/v1beta1
+apiVersion: gcp.crossplane.io/v1beta1
 kind: ProviderConfig
 metadata:
   name: default
