@@ -1,0 +1,29 @@
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: SecurityGroup
+metadata:
+  name: eking-1
+spec:
+  forProvider:
+    description: Allow PSQL inbound traffic
+    name: allow-psql
+    region: eu-west-2
+    vpcIdRef:
+      name: eking-1
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: SecurityGroupRule
+metadata:
+  name: eking-1
+spec:
+  deletionPolicy: Delete
+  forProvider:
+    cidrBlocks:
+    - 0.0.0.0/0
+    fromPort: 5432
+    protocol: tcp
+    region: eu-west-2
+    securityGroupIdRef:
+      name: eking-1
+    toPort: 5432
+    type: ingress

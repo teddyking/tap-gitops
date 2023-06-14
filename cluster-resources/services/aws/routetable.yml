@@ -1,0 +1,35 @@
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: RouteTable
+metadata:
+  name: eking-1
+spec:
+  forProvider:
+    region: eu-west-2
+    vpcIdRef:
+      name: eking-1
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: MainRouteTableAssociation
+metadata:
+  name: eking-1
+spec:
+  forProvider:
+    region: eu-west-2
+    routeTableIdRef:
+      name: eking-1
+    vpcIdRef:
+      name: eking-1
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: Route
+metadata:
+  name: eking-1
+spec:
+  forProvider:
+    destinationCidrBlock: 0.0.0.0/0
+    gatewayIdRef:
+      name: eking-1
+    region: eu-west-2
+    routeTableIdRef:
+      name: eking-1

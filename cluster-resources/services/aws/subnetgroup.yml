@@ -1,0 +1,22 @@
+---
+apiVersion: rds.aws.upbound.io/v1beta1
+kind: SubnetGroup
+metadata:
+  name: eking-1-public
+spec:
+  forProvider:
+    region: eu-west-2
+    subnetIdRefs:
+      - name: eking-subnet-public-1
+      - name: eking-subnet-public-2
+---
+apiVersion: rds.aws.upbound.io/v1beta1
+kind: SubnetGroup
+metadata:
+  name: eking-1-private
+spec:
+  forProvider:
+    region: eu-west-2
+    subnetIdRefs:
+      - name: eking-subnet-private-1
+      - name: eking-subnet-private-2

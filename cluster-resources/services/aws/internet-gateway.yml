@@ -1,0 +1,11 @@
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: InternetGateway
+metadata:
+  name: eking-1
+spec:
+  forProvider:
+    region: eu-west-2
+    vpcIdRef:
+      name: eking-1
+# I must add a route to the Route Table (TBC?), which permits e.g. destination 0.0.0.0/0 and target = <internet gateway>

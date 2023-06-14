@@ -1,0 +1,49 @@
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: Subnet
+metadata:
+  name: eking-subnet-public-1
+spec:
+  forProvider:
+    region: eu-west-2
+    availabilityZone: eu-west-2a
+    vpcIdRef:
+      name: eking-1
+    cidrBlock: 10.0.0.0/18
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: Subnet
+metadata:
+  name: eking-subnet-private-1
+spec:
+  forProvider:
+    region: eu-west-2
+    availabilityZone: eu-west-2a
+    vpcIdRef:
+      name: eking-1
+    cidrBlock: 10.0.64.0/18
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: Subnet
+metadata:
+  name: eking-subnet-public-2
+spec:
+  forProvider:
+    region: eu-west-2
+    availabilityZone: eu-west-2b
+    vpcIdRef:
+      name: eking-1
+    cidrBlock: 10.0.128.0/18
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: Subnet
+metadata:
+  name: eking-subnet-private-2
+spec:
+  forProvider:
+    region: eu-west-2
+    availabilityZone: eu-west-2b
+    vpcIdRef:
+      name: eking-1
+    cidrBlock: 10.0.192.0/18
+

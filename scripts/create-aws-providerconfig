@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+# Creates a new ProviderConfig named 'default' for the AWS Provider.
+# Assumes that you have set the AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY and AWS_SESSION_TOKEN env vars.
+
+set -euo pipefail
+
+echo -e "[default]\naws_access_key_id = $AWS_ACCESS_KEY_ID\naws_secret_access_key = $AWS_SECRET_ACCESS_KEY\naws_session_token = $AWS_SESSION_TOKEN" > creds.conf
+kubectl create secret generic aws-creds -n crossplane-system --from-file=creds=./creds.conf
+rm -f creds.conf
+
+kubectl apply -f -<<EOF
+---
+apiVersion: aws.upbound.io/v1beta1
+kind: ProviderConfig
+metadata:
+ name: default
+spec:
+ credentials:
+   source: Secret
+   secretRef:
+     namespace: crossplane-system
+     name: aws-creds
+     key: creds
+EOF
