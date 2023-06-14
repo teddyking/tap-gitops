@@ -2,19 +2,19 @@
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: SecurityGroup
 metadata:
-  name: eking-1
+  name: tap-aws-rds-1
 spec:
   forProvider:
-    description: Allow PSQL inbound traffic
-    name: allow-psql
+    description: Security Group for tap-aws-rds VPC
+    name: tap-aws-rds-1
     region: eu-west-2
     vpcIdRef:
-      name: eking-1
+      name: tap-aws-rds
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: SecurityGroupRule
 metadata:
-  name: eking-1
+  name: permit-psql-from-anywhere
 spec:
   deletionPolicy: Delete
   forProvider:
@@ -24,6 +24,6 @@ spec:
     protocol: tcp
     region: eu-west-2
     securityGroupIdRef:
-      name: eking-1
+      name: tap-aws-rds-1
     toPort: 5432
     type: ingress

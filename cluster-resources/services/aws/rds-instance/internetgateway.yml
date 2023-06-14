@@ -1,0 +1,10 @@
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: InternetGateway
+metadata:
+  name: tap-aws-rds
+spec:
+  forProvider:
+    region: eu-west-2
+    vpcIdRef:
+      name: tap-aws-rds

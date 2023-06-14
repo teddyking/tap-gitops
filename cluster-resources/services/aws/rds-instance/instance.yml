@@ -2,20 +2,20 @@
 apiVersion: rds.aws.upbound.io/v1beta1
 kind: Instance
 metadata:
-  name: eking-1
+  name: tap-aws-rds-1
 spec:
   forProvider:
     allocatedStorage: 20
     autoGeneratePassword: true
     dbSubnetGroupNameRef:
-      name: eking-1-public
+      name: tap-aws-rds-public-1
     engine: postgres
     engineVersion: "13.7"
     instanceClass: db.t3.micro
-    name: eking1
+    name: tapawsrds1
     passwordSecretRef:
       key: password
-      name: eking-1
+      name: tap-aws-rds-1
       namespace: crossplane-system
     publiclyAccessible: true
     region: eu-west-2
@@ -24,7 +24,7 @@ spec:
     storageType: gp2
     username: adminuser
     vpcSecurityGroupIdRefs:
-    - name: eking-1
+    - name: tap-aws-rds-1
   writeConnectionSecretToRef:
-    name: eking-1-con-secret
+    name: tap-aws-rds-1-con-secret
     namespace: crossplane-system

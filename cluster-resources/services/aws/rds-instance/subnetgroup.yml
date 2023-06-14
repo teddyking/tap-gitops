@@ -1,0 +1,11 @@
+---
+apiVersion: rds.aws.upbound.io/v1beta1
+kind: SubnetGroup
+metadata:
+  name: tap-aws-rds-public-1
+spec:
+  forProvider:
+    region: eu-west-2
+    subnetIdRefs:
+      - name: tap-aws-rds-public-1
+      - name: tap-aws-rds-public-2

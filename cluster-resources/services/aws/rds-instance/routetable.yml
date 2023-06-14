@@ -2,34 +2,34 @@
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: RouteTable
 metadata:
-  name: eking-1
+  name: tap-aws-rds
 spec:
   forProvider:
     region: eu-west-2
     vpcIdRef:
-      name: eking-1
+      name: tap-aws-rds
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: MainRouteTableAssociation
 metadata:
-  name: eking-1
+  name: tap-aws-rds-rta-1
 spec:
   forProvider:
     region: eu-west-2
     routeTableIdRef:
-      name: eking-1
+      name: tap-aws-rds
     vpcIdRef:
-      name: eking-1
+      name: tap-aws-rds
 ---
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: Route
 metadata:
-  name: eking-1
+  name: tap-aws-rds-internet-gateway
 spec:
   forProvider:
     destinationCidrBlock: 0.0.0.0/0
     gatewayIdRef:
-      name: eking-1
+      name: tap-aws-rds
     region: eu-west-2
     routeTableIdRef:
-      name: eking-1
+      name: tap-aws-rds
