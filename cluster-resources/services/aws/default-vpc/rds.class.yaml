@@ -1,0 +1,11 @@
+---
+apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+kind: ClusterInstanceClass
+metadata:
+  name: aws-rds-psql-default-vpc
+spec:
+  description:
+    short: Amazon AWS RDS PostgreSQL
+  provisioner:
+    crossplane:
+      compositeResourceDefinition: xpostgresqlinstances.database.rds.example.org

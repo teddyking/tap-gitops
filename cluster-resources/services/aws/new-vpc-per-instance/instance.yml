@@ -7,24 +7,18 @@ spec:
   forProvider:
     allocatedStorage: 20
     autoGeneratePassword: true
-    dbSubnetGroupNameRef:
-      name: tap-aws-rds-public-1
-    engine: postgres
-    engineVersion: "13.7"
-    instanceClass: db.t3.micro
-    name: tapawsrds1
     passwordSecretRef:
       key: password
       name: tap-aws-rds-1
       namespace: crossplane-system
-    publiclyAccessible: true
     region: eu-west-2
-    skipFinalSnapshot: true
-    storageEncrypted: true
-    storageType: gp2
+    instanceClass: db.t3.micro
+    engine: postgres
+    engineVersion: "13.7"
+    name: tapawsrds1
     username: adminuser
-    vpcSecurityGroupIdRefs:
-    - name: tap-aws-rds-1
+    publiclyAccessible: true
+    skipFinalSnapshot: true
   writeConnectionSecretToRef:
     name: tap-aws-rds-1-con-secret
     namespace: crossplane-system
