@@ -25,7 +25,7 @@ spec:
             description: The OpenAPIV3Schema of this Composite Resource Definition.
             properties:
               storageGB:
-                default: 1
+                default: 20
                 description: The desired storage capacity for the instance.
                 type: integer
             type: object

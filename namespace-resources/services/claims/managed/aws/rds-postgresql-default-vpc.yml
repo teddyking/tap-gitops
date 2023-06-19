@@ -2,7 +2,9 @@
 apiVersion: services.apps.tanzu.vmware.com/v1alpha1
 kind: ClassClaim
 metadata:
-  name: aws-rds-psql-1
+  name: rds-postgresql-default-vpc-1
 spec:
   classRef:
     name: aws-rds-psql-default-vpc
+  parameters:
+    storageGB: 20

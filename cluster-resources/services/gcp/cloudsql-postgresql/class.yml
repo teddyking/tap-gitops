@@ -1,7 +1,7 @@
 apiVersion: services.apps.tanzu.vmware.com/v1alpha1
 kind: ClusterInstanceClass
 metadata:
-  name: cloudsql-postgresql-on-demand
+  name: cloudsql-postgresql
 spec:
   description:
     short: On-demand, dynamically-provisioned GCP CloudSQL PostgreSQL database instances
